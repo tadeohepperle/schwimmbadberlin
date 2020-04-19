@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Container } from "react-bootstrap";
 import NavBar from "./NavBar";
 import React, { useEffect } from "react";
 
@@ -30,14 +29,19 @@ const Layout = props => {
     metadescription,
     metatitle,
     handleConfirmSearch,
-    searchInitialValue
+    searchInitialValue,
+    structuredData
   } = props;
 
-  console.log(headerImagePath);
   return (
     <div>
       <Head>
         <title>{metatitle ? metatitle : title}</title>
+        <script
+          key={title}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
 
         <link rel="shortcut icon" href="/static/favicon.png" />
 
@@ -78,10 +82,6 @@ const Layout = props => {
       <style jsx global>{`
         .headerImage {
           width: 100%;
-        }
-
-        p {
-          font-size: 18px;
         }
 
         .searchBarArea {

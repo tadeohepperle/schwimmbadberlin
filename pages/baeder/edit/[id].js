@@ -159,7 +159,7 @@ class Page extends Component {
 
 export default Page;
 
-Page.getInitialProps = async function (context) {
+Page.getInitialProps = async function(context) {
   const { id } = context.query;
   await handleAuthSSR(context);
   //console.log("slugname: ", slugname);

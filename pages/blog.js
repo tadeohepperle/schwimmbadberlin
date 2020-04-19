@@ -3,7 +3,18 @@ import { getBlogData, verifyJWT } from "./../services/APIConnection";
 import Layout from "./../components/Layout";
 import { yearRightNow } from "../services/lookUpService";
 import BlogPostCard from "../components/BlogPostCard";
-import { Col, Row, Button } from "antd";
+import { Col, Row, Button, Divider } from "antd";
+import MoreArticlesRow from "../components/MoreArticlesRow";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "blog",
+  url: "https://www.schwimmbadberlin.de/blog",
+  image: "https://www.schwimmbadberlin.de/static/images/stock/spassbad.jpg",
+  name: "Schwimmbadberlin - Der Badespaß Blog",
+  description:
+    "Der Blog rund um das Thema Schwimmen und Badespaß. Was sind die coolsten Bade-Gadgets? Außerdem findest du hier Öffnungszeiten der Berliner Schwimmbäder, Ausstattung, Preise und mehr."
+};
 
 const content1 = (
   <div>
@@ -39,7 +50,8 @@ const Page = props => {
       metatitle={`So schwimmt man ${yearRightNow()} - Der Blog rund um Badspaß`}
       title={`So schwimmt man ${yearRightNow()}!`}
       headline={"Der Blog rund um Schwimmen und Badespaß"}
-      metadescription={`Der Blog rund um das Thema Schwimmen und Badespaß. Was sind die coolsten Bade-Gadgets in ${yearRightNow()}? AUßerdem findest du hier Öffnungszeiten der Berliner Schwimmbäder, Ausstattung, Preise und mehr.`}
+      metadescription={`Der Blog rund um das Thema Schwimmen und Badespaß. Was sind die coolsten Bade-Gadgets in ${yearRightNow()}? Außerdem findest du hier Öffnungszeiten der Berliner Schwimmbäder, Ausstattung, Preise und mehr.`}
+      structuredData={structuredData}
     >
       {content1}
       <Row type="flex" justify="start" key={"index"}>
@@ -49,8 +61,11 @@ const Page = props => {
           </Col>
         ))}
       </Row>
-
-      <h3 className="caption">Schwimmbadgeheimtipps in Berlin:</h3>
+      <Divider></Divider>
+      <MoreArticlesRow
+        withAsyncData
+        title={`Schwimmbad-Geheimtipps in Berlin:`}
+      ></MoreArticlesRow>
       <style jsx global>{`
         .infocontainer {
           background: rgb(233, 236, 239);

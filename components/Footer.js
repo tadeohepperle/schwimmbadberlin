@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MyContainer from "./utilityComponents.js/MyContainer";
 import BackendLogin from "./BackendLogin";
+import { yearRightNow } from "../services/lookUpService";
 
 const Footer = () => {
   return (
@@ -9,8 +10,8 @@ const Footer = () => {
         <MyContainer>
           {" "}
           <div style={{ color: "#aaa" }}>
-            Copyright ©2019, THAPPS - Digital Media, Tadeo Hepperle, Berlin,
-            Germany <br></br>
+            Copyright ©{yearRightNow()}, THAPPS - Digital Media, Tadeo Hepperle,
+            Berlin, Germany <br></br>
             <Link href="/impressum-und-kontakt">
               <a>Impressum und Kontakt</a>
             </Link>

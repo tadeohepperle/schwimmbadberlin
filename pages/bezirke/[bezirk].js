@@ -8,14 +8,28 @@ import { getShowNameFromBezirkSlugname } from "./../../services/lookUpService";
 const Index = props => {
   const { data, bezirk } = props;
 
+  const showName = getShowNameFromBezirkSlugname(bezirk);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebContent",
+    url: "https://www.schwimmbadberlin.de/bezirke/" + bezirk,
+    image:
+      "https://www.schwimmbadberlin.de/static/images/baeder/schwimmhalle-fischerinsel3.jpg",
+    name: "Schwimmbäder in Berlin " + showName,
+    description:
+      "Hallenbäder und Freibäder in Berlin " +
+      showName +
+      ": Hier findest du Öffnungszeiten, Preise, Ausstattung und mehr."
+  };
+
   return (
     <Layout
-      title={`Schwimmbäder in Berlin ${getShowNameFromBezirkSlugname(bezirk)}`}
+      title={`Schwimmbäder in Berlin ${showName}`}
       // headerImagePath={"/static/images/stock/index-header.jpg"}
-      headline={`Deine Schwimmbad-Übersicht für Berlin ${getShowNameFromBezirkSlugname(
-        bezirk
-      )}`}
-      metadescription={`Schwimmbäder in Berlin ${bezirk}. Finde ein Schwimmbad in deinem Stadtteil. ✓ Öffnungszeiten ✓ Preise ✓ Ausstattung ✓ Parkmöglichkeiten`}
+      headline={`Deine Schwimmbad-Übersicht für Berlin ${showName}`}
+      metadescription={`Schwimmbäder in Berlin ${showName}. Finde ein Schwimmbad in deinem Stadtteil. ✓ Öffnungszeiten ✓ Preise ✓ Ausstattung ✓ Parkmöglichkeiten`}
+      structuredData={structuredData}
     >
       <SchwimmbadCardsGrid data={data}></SchwimmbadCardsGrid>
       <style jsx global>{`

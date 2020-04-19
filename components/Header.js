@@ -1,4 +1,3 @@
-import { Container, Jumbotron, Button } from "react-bootstrap";
 import MyContainer from "./utilityComponents.js/MyContainer";
 import { primaryColor, primaryColorShadow } from "./../assets/themeConstants";
 
@@ -17,20 +16,13 @@ const Header = props => {
 
       <style jsx>{`
         .title {
-          font-size: 3em;
-          font-weight: normal;
           color: white;
-          margin-bottom: 0.5em;
         }
 
         hr {
           border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .subtitle {
-          font-size: 1.5rem;
-          fontweight: normal;
-        }
         .separator {
           height: 1rem;
         }

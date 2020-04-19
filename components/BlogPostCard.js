@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
+import Excerpt from "./Excerpt";
 export function excerpt(html, len) {
   let text = html.replace(/<[^>]*>/g, "");
   return text.substr(0, len) + "...";
@@ -38,7 +39,7 @@ const BlogPostCard = ({ element }) => {
                 <h3>{element.title}</h3>
               </a>
             </Link>
-            <p>{excerpt(element.showContent, 150)}</p>
+            <Excerpt html={element.showContent} paragraph limit={149}></Excerpt>
           </div>
         </div>
       </div>
@@ -74,6 +75,7 @@ const BlogPostCard = ({ element }) => {
           background-clip: border-box;
           border: 1px solid rgba(0, 0, 0, 0.125);
           border-radius: 0.25rem;
+          box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         }
 
         a:link {
@@ -83,7 +85,8 @@ const BlogPostCard = ({ element }) => {
         p,
         div {
           text-align: center !important;
-        }
+        }import Excerpt from './Excerpt';
+
         .floatincorner {
           color: red;
           position: absolute;
@@ -114,7 +117,7 @@ const BlogPostCard = ({ element }) => {
         }
 
         h3 {
-          font-size: 1.25rem;
+          font-size: 1.5rem;
           text-align: center;
           margin-top: 1rem;
         }

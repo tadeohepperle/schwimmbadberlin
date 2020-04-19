@@ -9,12 +9,27 @@ const Index = props => {
   const { data, feature } = props;
   //console.log(feature.content1);
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebContent",
+    url: "https://www.schwimmbadberlin.de/ausstattung/" + feature.slugName,
+    image:
+      "https://www.schwimmbadberlin.de/static/images/stock/" +
+      feature.slugName +
+      ".jpg",
+    name: "Schwimmbäder in Berlin mit " + feature.showName,
+    description:
+      feature.showName +
+      "-Übersicht für Berlin. Preise, Ausstattung, Öffnungszeiten und mehr."
+  };
+
   return (
     <Layout
       title={`Schwimmbäder in Berlin mit ${feature.showName}`}
       headerImagePath={`/static/images/stock/${feature.slugName}.jpg`}
       headline={`${feature.showName}-Übersicht Berlin`}
       metadescription={`Schwimmbäder mit ${feature.showName} in Berlin. ✓ Finde ein Schwimmbad in deiner Nähe. Wir zeigen dir Öffnungszeiten, Preise und mehr.`}
+      structuredData={structuredData}
     >
       <div>
         {featureContents[feature.slugName]}

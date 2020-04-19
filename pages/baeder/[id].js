@@ -11,6 +11,7 @@ import OpenPill from "./../../components/OpenPill";
 import MoreArticlesRow from "./../../components/MoreArticlesRow";
 import { Col, Row } from "antd";
 import ColResponsive from "../../components/utilityComponents.js/ColResponsive";
+import { getShowNameFromBezirkSlugname } from "../../services/lookUpService";
 
 export default function Post(props) {
   // console.log(props);
@@ -19,6 +20,23 @@ export default function Post(props) {
   //const router = useRouter();
   const headline = `${element.typ} in Berlin ${element.bezirk}`;
   const headerImagePath = `/static/images/baeder/${element._id}1.jpg`;
+
+  const structuredData = {
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    url: "https://www.schwimmbadberlin.de",
+    image: "/static/images/baeder/" + element._id + "1.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: element.adresse[0],
+      postalCode: element.adresse[1].substring(0, 5),
+      addressLocality: "Berlin, Germany"
+    },
+    description: element.title + " | Schwimmbad in Berlin " + element.bezirk,
+    name: element.title,
+    telephone: element.telefon[0],
+    priceRange: "€"
+  };
 
   return (
     <Layout
@@ -34,6 +52,7 @@ export default function Post(props) {
       }
       // headerImagePath={headerImagePath}
       metadescription={`${element.title} | ${element.typ} in Berlin ${element.bezirk} | ✓ Öffnungszeiten ✓ Preise ✓ Ausstattung ✓ Parkmöglichkeiten`}
+      structuredData={structuredData}
     >
       <div>
         <div className="row justify-content-md-center"></div>

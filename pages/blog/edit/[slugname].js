@@ -153,7 +153,7 @@ class Page extends Component {
 
 export default Page;
 
-Page.getInitialProps = async function (context) {
+Page.getInitialProps = async function(context) {
   const { slugname } = context.query;
   //console.log("slugname: ", slugname);
   await handleAuthSSR(context);
@@ -187,7 +187,7 @@ const properties = [
   {
     specname: "headerPicPath",
     title:
-      "Path to the source of the Header image. src of the image component.",
+      "Path to the source of the Header image. z.b. /static/images/baeder/stadtbad-charlottenburg-alte-halle1.jpg",
     type: "string",
     span: DEFAULTCOLSIZE
   },
@@ -197,6 +197,12 @@ const properties = [
     type: "richtext",
     span: DEFAULTCOLSIZE,
     editorHeight: 400
+  },
+  {
+    specname: "author",
+    title: "Author",
+    type: "string",
+    span: DEFAULTCOLSIZE
   },
   {
     specname: "tags",

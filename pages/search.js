@@ -56,7 +56,7 @@ class Page extends Component {
       <React.Fragment>
         {baederData?.length >= 1 && (
           <div>
-            <h2>{`Hier sind ${baederData.length} Schwimmbäder, die zu deiner Suchanfrage passen könnten:`}</h2>
+            <h2>{`Hier sind ${baederData.length} Berliner Schwimmbäder, die zu deiner Suchanfrage passen könnten:`}</h2>
             <SchwimmbadCardsGrid data={baederData}></SchwimmbadCardsGrid>
           </div>
         )}
@@ -82,7 +82,7 @@ class Page extends Component {
     return (
       <Layout
         title={"Finde Schwimmbäder in Berlin"}
-        headerImagePath={"/static/images/stock/index-header.jpg"}
+        // headerImagePath={"/static/images/stock/index-header.jpg"}
         headline={`Suche nach besonderen Eigenschaften wie zum Beispiel "Babybecken" oder "Wasserrutsche"`}
         metadescription={`Suche und finde Schwimmbäder in Berlin. Welche Schwimmbäder in Berlin haben gerade geöffnet? Finde ein Schwimmbad in deiner Nähe. Wir zeigen dir Öffnungszeiten, Preise und mehr.`}
         handleConfirmSearch={this.handleConfirmSearch}

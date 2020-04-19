@@ -1,32 +1,67 @@
-/* eslint-disable */
+const withPlugins = require("next-compose-plugins");
+const withLess = require("@zeit/next-less");
+const lessToJS = require("less-vars-to-js");
+const fs = require("fs");
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const withCss = require("@zeit/next-css");
+const themeVariables = lessToJS(
+  fs.readFileSync(path.resolve(__dirname, "./assets/antd-custom.less"), "utf8")
+);
 
-module.exports = withCss({
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      const antStyles = /antd\/.*?\/style\/css.*?/;
-      const origExternals = [...config.externals];
-      config.externals = [
-        (context, request, callback) => {
-          if (request.match(antStyles)) return callback();
-          if (typeof origExternals[0] === "function") {
-            origExternals[0](context, request, callback);
-          } else {
-            callback();
-          }
-        },
-        ...(typeof origExternals[0] === "function" ? [] : origExternals)
-      ];
+if (typeof require !== "undefined") {
+  require.extensions[".less"] = file => {};
+}
 
-      config.module.rules.unshift({
-        test: antStyles,
-        use: "null-loader"
-      });
+module.exports = withPlugins(
+  [
+    withLess,
+    new MiniCssExtractPlugin({
+      ignoreOrder: true
+    })
+  ],
+  {
+    lessLoaderOptions: {
+      javascriptEnabled: true,
+      modifyVars: themeVariables // make your antd custom effective
+    },
+    webpack: (config, { isServer }) => {
+      if (isServer) {
+        const antStyles = /antd\/.*?\/style.*?/;
+        const origExternals = [...config.externals];
+        config.externals = [
+          (context, request, callback) => {
+            if (request.match(antStyles)) {
+              return callback();
+            }
+            if (typeof origExternals[0] === "function") {
+              origExternals[0](context, request, callback);
+            } else {
+              callback();
+            }
+          },
+          ...(typeof origExternals[0] === "function" ? [] : origExternals)
+        ];
+        config.module.rules.push({
+          test: antStyles,
+          use: "null-loader"
+        });
+        /*
+      config.plugins.push(
+        new MiniCssExtractPlugin({
+          ignoreOrder: true
+        })
+      );
+      */
+        config.module.rules.push({
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader"]
+        });
+      }
+      return config;
     }
-    return config;
   }
-});
+);
 
 /*
 

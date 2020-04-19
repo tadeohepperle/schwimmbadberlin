@@ -4,6 +4,37 @@ import Layout from "./../components/Layout";
 import SchwimmbadCardsGrid from "./../components/SchwimmbadCardsGrid";
 import { Button, DatePicker } from "antd";
 
+/*
+const structuredData = {
+  "@context": "http://schema.org",
+  "@type": "LocalBusiness",
+  "url": "http://www.your-company-site.com",
+  "image":
+    "http://www.civil.usherbrooke.ca/cours/gci215a/empire-state-building.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mexico Beach",
+    "addressRegion": "FL",
+    "streetAddress": "3102 Highway 98"
+  },
+  "description": "A superb collection of fine gifts and clothing to accent your stay in Mexico Beach.",
+  "name": "Beachwalk Beachwear & Giftware",
+  "telephone": "850-648-4200",
+  "priceRange": "ab 3,50€"
+};
+*/
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebContent",
+  url: "https://www.schwimmbadberlin.de",
+  image:
+    "https://www.schwimmbadberlin.de/static/images/stock/sportbecken-header.jpg",
+  name: "Schwimmbad-Überblick für Berlin",
+  description:
+    "Welche Schwimmbäder in Berlin haben gerade geöffnet? Finde ein Schwimmbad in deiner Nähe. Wir zeigen dir Öffnungszeiten, Preise und mehr."
+};
+
 const content1 = (
   <div>
     <div>
@@ -45,7 +76,7 @@ const Index = props => {
         </span>
       }
       metatitle={`Schwimmbäder in Berlin - Finde ein Bad in deiner Nähe`}
-      // headerImagePath={"/static/images/stock/index-header.jpg"}
+      structuredData={structuredData}
       headline={"Deine Berliner Schwimmbad-Übersicht"}
       metadescription={`Welche Schwimmbäder in Berlin haben gerade geöffnet? Finde ein Schwimmbad in deiner Nähe. Wir zeigen dir Öffnungszeiten, Preise und mehr.`}
     >

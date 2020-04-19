@@ -4,7 +4,12 @@ import axios from "axios";
 
 const rootURL = "http://localhost:5000/";
 
-export const getBaederData = async (query, projection = {}) => {
+export const getBaederData = async (
+  query,
+  projection = {},
+  skip = 0,
+  limit = 0
+) => {
   //const url = "https://www.schwimmbadberlin.de/api/";
   const url = rootURL + "api/";
   const options = {
@@ -12,13 +17,13 @@ export const getBaederData = async (query, projection = {}) => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ query, projection })
+    body: JSON.stringify({ query, projection, skip, limit })
   };
 
   const res = await fetch(url, options);
   const data = await res.json();
   //console.log(data);
-  return data;
+  return filterSchwimmbadResults(data);
 };
 
 export const getBlogData = async (
@@ -159,4 +164,8 @@ function sortAndFilterBlogResults(blogResults) {
   return blogResults
     .filter(record => record.visible)
     .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+}
+
+function filterSchwimmbadResults(schwimmbadResults) {
+  return schwimmbadResults.filter(record => record.visible);
 }

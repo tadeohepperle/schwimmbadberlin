@@ -44,7 +44,7 @@ class SearchBar extends Component {
     return (
       <div style={{ maxWidth: "400px", margin: "auto" }}>
         <AutoComplete
-          size="default"
+          size="large"
           style={{ width: "100%" }}
           dataSource={this.state.validOptions.map(el => (
             <Option key={el} value={el}>
@@ -59,7 +59,7 @@ class SearchBar extends Component {
           <Input.Search
             style={{}}
             enterButton="Suche"
-            size="default"
+            size="large"
             onSearch={this.confirmSearch}
             defaultValue={this.state.initialValue}
           ></Input.Search>

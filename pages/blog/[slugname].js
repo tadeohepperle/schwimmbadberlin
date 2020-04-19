@@ -3,15 +3,42 @@ import { getBlogData } from "./../../services/APIConnection";
 import Layout from "./../../components/Layout";
 import Excerpt from "./../../components/Excerpt";
 import OpenPill from "./../../components/OpenPill";
-import { Col, Row } from "antd";
+import { Col, Row, Divider } from "antd";
 import ColResponsive from "../../components/utilityComponents.js/ColResponsive";
 import { excerpt } from "./../../components/BlogPostCard";
+import MoreArticlesRow from "../../components/MoreArticlesRow";
 
 export default function Post(props) {
   // console.log(props);
   const { element } = props;
   // console.log(element);
   //const router = useRouter();
+
+  let utcDateString = new Date(element.releaseDate).toUTCString();
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "blogPosting",
+    url: "https://www.schwimmbadberlin.de/blog/" + element.slugname,
+    image: "https://www.schwimmbadberlin.de" + element.headerPicPath,
+    name: element.title,
+    description: excerpt(element.showContent, 200),
+    author: {
+      "@type": "Person",
+      name: element.author
+    },
+    datePublished: utcDateString,
+    dateModified: utcDateString,
+    headline: element.title,
+    publisher: {
+      "@type": "Organization",
+      name: "THAPPS - Digital Media"
+    },
+    mainEntityOfPage: {
+      "@type": "Blog",
+      "@id": "https://www.schwimmbadberlin.de/"
+    }
+  };
 
   return (
     <Layout
@@ -26,13 +53,20 @@ export default function Post(props) {
       })}, verfasst von ${element.author}`}
       metadescription={excerpt(element.showContent, 200)}
       headerImagePath={element.headerPicPath}
+      structuredData={structuredData}
     >
       <div>
         <h1>{element.title}</h1>
         <h2>{element.subtitle}</h2>
 
         <Excerpt html={element.showContent}></Excerpt>
-        <hr></hr>
+        <Divider></Divider>
+        <MoreArticlesRow
+          withAsyncData
+          title={
+            "Wenn du in Berlin wohnst, sind diese 3 Schwimmbäder ein Muss:"
+          }
+        ></MoreArticlesRow>
       </div>
       <style jsx global>{`
         .infocontainer {
