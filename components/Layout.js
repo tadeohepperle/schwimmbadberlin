@@ -7,6 +7,12 @@ import React, { useEffect } from "react";
 
 import { initGA, logPageView } from "./../services/analytics";
 import MyContainer from "./utilityComponents.js/MyContainer";
+import SearchBar from "./SearchBar";
+import {
+  searchBarColor,
+  searchBarColorShadow,
+  headerPicHeight
+} from "./../assets/themeConstants";
 
 const Layout = props => {
   useEffect(() => {
@@ -22,12 +28,16 @@ const Layout = props => {
     headerImagePath,
     headline,
     metadescription,
-    metatitle
+    metatitle,
+    handleConfirmSearch,
+    searchInitialValue
   } = props;
+
+  console.log(headerImagePath);
   return (
     <div>
       <Head>
-        <title>{title}</title>
+        <title>{metatitle ? metatitle : title}</title>
 
         <link rel="shortcut icon" href="/static/favicon.png" />
 
@@ -36,17 +46,55 @@ const Layout = props => {
       <MyContainer>
         <NavBar></NavBar>
       </MyContainer>
+      <MyContainer className="searchBarArea">
+        <div style={{ padding: "16px 0px 16px" }}>
+          <SearchBar
+            initialValue={searchInitialValue}
+            handleConfirmSearch={handleConfirmSearch}
+          ></SearchBar>
+        </div>
+      </MyContainer>
 
-      <Header
-        title={metatitle ? metatitle : title}
-        headerImagePath={headerImagePath}
-        headline={headline}
-      ></Header>
-      <MyContainer flowout>{props.children}</MyContainer>
+      <Header title={title ? title : metatitle} headline={headline}></Header>
+      {headerImagePath && (
+        <MyContainer bgMonoColored noPadding>
+          <img
+            className="headerImage"
+            alt={title}
+            title={title}
+            src={headerImagePath}
+            style={{ overflow: "hidden" }}
+          ></img>
+        </MyContainer>
+      )}
+      <MyContainer bgMonoColored>
+        <div className="space"></div>
+        {props.children}
+        <div className="space"></div>
+      </MyContainer>
 
       <Footer></Footer>
 
       <style jsx global>{`
+        .headerImage {
+          width: 100%;
+        }
+
+        p {
+          font-size: 18px;
+        }
+
+        .searchBarArea {
+          background: ${searchBarColor};
+          box-shadow: inset 0px -3px 4px 0px ${searchBarColorShadow};
+
+          z-index: 10;
+        }
+
+        .space {
+          margin-bottom: 24px;
+        }
+
         hr {
           box-sizing: content-box;
           height: 0;
@@ -54,7 +102,7 @@ const Layout = props => {
           margin-top: 1rem;
           margin-bottom: 1rem;
           border: 0;
-          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          border-top: 1px solid rgba(1, 1, 1, 0.1);
         }
       `}</style>
     </div>

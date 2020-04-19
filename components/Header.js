@@ -1,5 +1,65 @@
 import { Container, Jumbotron, Button } from "react-bootstrap";
 import MyContainer from "./utilityComponents.js/MyContainer";
+import { primaryColor, primaryColorShadow } from "./../assets/themeConstants";
+
+const Header = props => {
+  const { title, headerImagePath, headline } = props;
+  return (
+    <div>
+      <div className="headerTotal">
+        <MyContainer>
+          <div className="headerBoard">
+            <h1 className="title">{title}</h1>
+            <div>{headline}</div>
+          </div>
+        </MyContainer>
+      </div>
+
+      <style jsx>{`
+        .title {
+          font-size: 3em;
+          font-weight: normal;
+          color: white;
+          margin-bottom: 0.5em;
+        }
+
+        hr {
+          border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .subtitle {
+          font-size: 1.5rem;
+          fontweight: normal;
+        }
+        .separator {
+          height: 1rem;
+        }
+        .headerTotal {
+          background: ${primaryColor};
+          box-shadow: inset 0px -3px 4px 0px ${primaryColorShadow};
+          z-index: 5;
+
+          width: 100%;
+          padding-right: 0;
+          padding-left: 0;
+        }
+        .headerBoard {
+          border-radius: 1rem;
+          padding: 2rem 0rem;
+          color: white;
+          text-align: center;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Header;
+
+/*
+
+
+
 
 const Header = props => {
   const { title, headerImagePath, headline } = props;
@@ -53,11 +113,19 @@ const Header = props => {
         .headerBoard {
           border-radius: 1rem;
           padding: 2rem 0rem;
-          /* text-align: center; */
+           text-align: center;
         }
-      `}</style>
-    </div>
-  );
-};
+        `}</style>
+      </div>
+    );
+  };
 
-export default Header;
+
+
+
+
+
+
+
+
+*/

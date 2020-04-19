@@ -1,3 +1,18 @@
+export const searchBarAutocompleteOptions = [
+  "Schwimmbad",
+  "Freibad",
+  "Rutsche",
+  "Wasserrutsche",
+  "Sportbad",
+  "Wassersport",
+  "Kinderschwimmen"
+];
+
+export const yearRightNow = () => {
+  let date = new Date();
+  return date.getFullYear();
+};
+
 export const getSlugnameFromBezirk = bezirk => {
   switch (bezirk) {
     case "Mitte":

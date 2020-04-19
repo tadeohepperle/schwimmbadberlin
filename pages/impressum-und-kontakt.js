@@ -7,7 +7,7 @@ const Index = props => {
   return (
     <Layout
       title={"Impressum und Kontakt"}
-      headerImagePath={"/static/images/stock/sportbecken-header.jpg"}
+      // headerImagePath={"/static/images/stock/sportbecken-header.jpg"}
       headline={
         <span>
           Hier finden Sie rechtliche Informationen zu dieser Seite.<br></br>Bei

@@ -1,10 +1,15 @@
 const OpenPill = ({ element }) => {
   const { openRN, openRNdata } = element;
 
-  const badge0 = { color: "#dc3545", text: "geschlossen" };
-  const badge1 = { color: "#28a745", text: "jetzt geöffnet" };
+  const badge0 = { background: "#dc3545", text: "geschlossen", color: "white" };
+  const badge1 = {
+    background: "#28a745",
+    text: "jetzt geöffnet",
+    color: "white"
+  };
   const badge2 = {
-    color: "#ffc107",
+    background: "#ffc107",
+    color: "black",
     text: `öffnet in ${
       openRNdata
         ? openRNdata.diffH
@@ -25,8 +30,8 @@ const OpenBadge = ({ badge }) => {
   return (
     <span
       style={{
-        color: "white",
-        background: badge.color,
+        color: badge.color,
+        background: badge.background,
         padding: "0.4rem 0.7rem",
         fontSize: "0.9rem",
         fontWeight: "bold",

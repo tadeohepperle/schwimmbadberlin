@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MyContainer from "./utilityComponents.js/MyContainer";
+import BackendLogin from "./BackendLogin";
 
 const Footer = () => {
   return (
@@ -39,6 +40,9 @@ const Footer = () => {
                 persönlichen Anruf sicher, dass das Bad offen ist, bevor Sie es
                 besuchen.
               </p>
+            </div>
+            <div>
+              <BackendLogin></BackendLogin>
             </div>
             <style jsx>{`
               a {

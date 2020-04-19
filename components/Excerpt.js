@@ -1,5 +1,5 @@
-const Excerpt = ({ element }) => {
-  return <div dangerouslySetInnerHTML={{ __html: element.contents }}></div>;
+const Excerpt = ({ html }) => {
+  return <div dangerouslySetInnerHTML={{ __html: html }}></div>;
 };
 
 export default Excerpt;

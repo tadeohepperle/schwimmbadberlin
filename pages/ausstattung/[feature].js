@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getData } from "./../../services/APIConnection";
+import { getBaederData } from "./../../services/APIConnection";
 import Layout from "./../../components/Layout";
 import SchwimmbadCardsGrid from "./../../components/SchwimmbadCardsGrid";
 import { featureDictionary } from "./../../services/lookUpService";
@@ -51,7 +51,7 @@ const Index = props => {
 
 Index.getInitialProps = async function(context) {
   const { feature } = context.query;
-  const { data } = await getData({
+  const data = await getBaederData({
     featuresBig: featureDictionary[feature].showName
   });
 
@@ -90,9 +90,12 @@ const featureContents = {
         <Link href="/baeder/schwimm-und-sprunghalle-im-europasportpark-sse">
           <a>Schwimm- und Sprunghalle im Europasportpark</a>
         </Link>{" "}
-        wie ein Weltmeister fühlen. Auf den Bahnen wurden bereits Weltrekorde
-        von Spitzenschwimmern aufgestellt. Bahnen zu schwimmen hilft
-        erwiesenermaßen auch bei Rückenschmerzen und stärkt die Muskulatur.
+        wie ein Weltmeister fühlen.{" "}
+      </p>
+      <p>
+        Auf den Bahnen wurden bereits Weltrekorde von Spitzenschwimmern
+        aufgestellt. Bahnen zu schwimmen hilft erwiesenermaßen auch bei
+        Rückenschmerzen und stärkt die Muskulatur.
       </p>
       <hr></hr>
       <h3 className="caption">Schwimmbäder mit Sportbecken in Berlin:</h3>

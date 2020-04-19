@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getData } from "./../services/APIConnection";
+import { getBaederData } from "./../services/APIConnection";
 import Layout from "./../components/Layout";
 import SchwimmbadCardsGrid from "./../components/SchwimmbadCardsGrid";
 import { Button, DatePicker } from "antd";
@@ -39,8 +39,13 @@ const Index = props => {
 
   return (
     <Layout
-      title={"Schwimmbäder Berlin im Überblick - Bäder in deiner Nähe"}
-      headerImagePath={"/static/images/stock/index-header.jpg"}
+      title={
+        <span>
+          Schwimmbäder in Berlin: <br></br> Finde ein Bad in deiner Nähe
+        </span>
+      }
+      metatitle={`Schwimmbäder in Berlin - Finde ein Bad in deiner Nähe`}
+      // headerImagePath={"/static/images/stock/index-header.jpg"}
       headline={"Deine Berliner Schwimmbad-Übersicht"}
       metadescription={`Welche Schwimmbäder in Berlin haben gerade geöffnet? Finde ein Schwimmbad in deiner Nähe. Wir zeigen dir Öffnungszeiten, Preise und mehr.`}
     >
@@ -73,8 +78,6 @@ const Index = props => {
           font-weight: normal;
           font-size: 1.5rem;
         }
-
-
         
       `}</style>
     </Layout>
@@ -82,7 +85,8 @@ const Index = props => {
 };
 
 Index.getInitialProps = async function() {
-  return await getData({});
+  const data = await getBaederData({});
+  return { data: data };
 };
 
 export default Index;

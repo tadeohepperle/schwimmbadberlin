@@ -7,7 +7,7 @@ const Index = props => {
   return (
     <Layout
       title={"Datenschutz­erklärung für www.schwimmbadberlin.de"}
-      headerImagePath={"/static/images/stock/sportbecken-header.jpg"}
+      // headerImagePath={"/static/images/stock/sportbecken-header.jpg"}
       headline={
         <span>
           Wir sind rechtlich dazu verpflichtet Ihnen mitzuteilen, welche Daten

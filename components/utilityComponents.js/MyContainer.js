@@ -1,8 +1,15 @@
 import { Col, Row } from "antd";
+import { searchBarColor } from "../../assets/themeConstants";
 
 const sequence = [0, 1, 1, 3, 5];
 
-const MyContainer = ({ children, className, flowout }) => {
+const MyContainer = ({
+  children,
+  className,
+  flowout,
+  bgMonoColored,
+  noPadding
+}) => {
   return (
     <div className={className}>
       <Row type="flex">
@@ -13,7 +20,9 @@ const MyContainer = ({ children, className, flowout }) => {
                   backgroundImage:
                     "linear-gradient(to bottom,rgba(0, 0, 0, 0),#b4dfff,#b4dfff)"
                 }
-              : {}
+              : {
+                  background: bgMonoColored ? searchBarColor : null
+                }
           }
           xs={sequence[0]}
           sm={sequence[1]}
@@ -23,7 +32,7 @@ const MyContainer = ({ children, className, flowout }) => {
         ></Col>
         <Col
           style={{
-            padding: "0 1rem"
+            padding: noPadding ? "0" : "0 1rem"
           }}
           xs={24 - 2 * sequence[0]}
           sm={24 - 2 * sequence[1]}
@@ -40,7 +49,9 @@ const MyContainer = ({ children, className, flowout }) => {
                   backgroundImage:
                     "linear-gradient(to bottom,rgba(0, 0, 0, 0),#b4dfff,#b4dfff)"
                 }
-              : {}
+              : {
+                  background: bgMonoColored ? searchBarColor : null
+                }
           }
           xs={sequence[0]}
           sm={sequence[1]}

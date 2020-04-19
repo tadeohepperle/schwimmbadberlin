@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getData } from "./../../services/APIConnection";
+import { getBaederData } from "./../../services/APIConnection";
 
 import Layout from "./../../components/Layout";
 import SchwimmbadCardsGrid from "./../../components/SchwimmbadCardsGrid";
@@ -11,7 +11,7 @@ const Index = props => {
   return (
     <Layout
       title={`Schwimmbäder in Berlin ${getShowNameFromBezirkSlugname(bezirk)}`}
-      headerImagePath={"/static/images/stock/index-header.jpg"}
+      // headerImagePath={"/static/images/stock/index-header.jpg"}
       headline={`Deine Schwimmbad-Übersicht für Berlin ${getShowNameFromBezirkSlugname(
         bezirk
       )}`}
@@ -48,7 +48,7 @@ const Index = props => {
 
 Index.getInitialProps = async function(context) {
   const { bezirk } = context.query;
-  const { data } = await getData({
+  const data = await getBaederData({
     bezirk: getShowNameFromBezirkSlugname(bezirk)
   });
 

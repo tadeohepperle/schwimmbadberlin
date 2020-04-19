@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { getData } from "./../../services/APIConnection";
+import { getBaederData } from "./../../services/APIConnection";
 import Layout from "./../../components/Layout";
 import BilderSlideShow from "../../components/BilderSlideShow";
 import AdvantagesList from "../../components/AdvantagesList";
@@ -28,18 +28,18 @@ export default function Post(props) {
         <div>
           <span style={{}}>{headline}</span>
           <br></br>
-
+          <br></br>
           <OpenPill element={element}></OpenPill>
         </div>
       }
-      headerImagePath={headerImagePath}
+      // headerImagePath={headerImagePath}
       metadescription={`${element.title} | ${element.typ} in Berlin ${element.bezirk} | ✓ Öffnungszeiten ✓ Preise ✓ Ausstattung ✓ Parkmöglichkeiten`}
     >
       <div>
         <div className="row justify-content-md-center"></div>
         <Row>
           <Col span={24}>
-            <Excerpt element={element}></Excerpt>
+            <Excerpt html={element.contents}></Excerpt>
             <hr></hr>
             <BilderSlideShow element={element}></BilderSlideShow>
             <hr></hr>
@@ -97,7 +97,7 @@ export default function Post(props) {
 
 Post.getInitialProps = async function(context) {
   const { id } = context.query;
-  const { data } = await getData({}); // diese stelle ist eigentlich scheiße gelöst, da unnötig viele daten abgefragt werden, aber ich habe gerade keine Lust eine komplexe Query Lösung im Backend einzubauen.
+  const data = await getBaederData({}); // diese stelle ist eigentlich scheiße gelöst, da unnötig viele daten abgefragt werden, aber ich habe gerade keine Lust eine komplexe Query Lösung im Backend einzubauen.
   // find the correct element:
   const element = data.find(el => el._id == id);
 

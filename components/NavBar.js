@@ -36,7 +36,7 @@ class MyNavBar extends Component {
           <Link href="/">
             <a>
               <Icon type="home" />
-              Startseite
+              <span>Startseite</span>
             </a>
           </Link>
         </Menu.Item>
@@ -52,7 +52,10 @@ class MyNavBar extends Component {
           {Object.keys(OTs).map(bezirk => {
             return (
               <Menu.Item key={OTs[bezirk].slugName}>
-                <Link href={`/bezirke/${OTs[bezirk].slugName}`}>
+                <Link
+                  as={`/bezirke/${OTs[bezirk].slugName}`}
+                  href={`/bezirke/[bezirk]`}
+                >
                   <a>{bezirk}</a>
                 </Link>
               </Menu.Item>
@@ -70,18 +73,27 @@ class MyNavBar extends Component {
         >
           {Object.keys(featureDictionary).map(key => (
             <Menu.Item key={key}>
-              <Link href={`/ausstattung/${key}`}>
+              <Link as={`/ausstattung/${key}`} href={`/ausstattung/[feature]`}>
                 <a>{featureDictionary[key].showName}</a>
               </Link>
             </Menu.Item>
           ))}
         </SubMenu>
 
+        <Menu.Item key="blog">
+          <Link href="/blog">
+            <a>
+              <Icon type="container" />
+              <span>Blog</span>
+            </a>
+          </Link>
+        </Menu.Item>
+
         <Menu.Item key="impressum" style={{ float: "right" }}>
           <Link href="/impressum-und-kontakt">
             <a>
               <Icon type="team" />
-              Impressum und Kontakt
+              <span>Impressum und Kontakt</span>
             </a>
           </Link>
         </Menu.Item>
